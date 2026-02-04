@@ -219,7 +219,472 @@ print(s.endswith("Life"))
     False
 
 
+# 주요 자료형
+
+## 리스트 자료형
+
 
 ```python
-
+# 리스트 만들기
+odd = [1, 3, 5, 7, 9]
 ```
+
+
+```python
+# 리스트 중요한 점, 순서! index!
+a = []
+b = [1, 2, 3]
+c = ['Life', 'is', 'too', 'short']
+d = [1, 2, 'Life', 'is']
+e = [1, 2, ['Life', 'is']]
+```
+
+
+```python
+s = "spring"
+s[0]
+a = [11, 22, 33, 44, 55]
+print(a[0] + a[3])
+```
+
+    55
+
+
+
+```python
+a = "banana"
+b = a
+print(id(a))
+print(id(b)) # a와 b의 주소값이 다름
+b = "kiwi"
+print(id(a)) # a와 b의 주소값이 다름
+print(id(b)) # a와 b의 주소값이 다름
+```
+
+    130813302943888
+    130813302943888
+    130813302943888
+    130813302944800
+
+
+
+```python
+aa = [11, 22, 33]
+print(id(aa))
+bb = aa
+print(id(bb))
+bb[0] = 33
+print(id(aa))
+print(id(bb))
+# 리스트 객체가 메모리에 생성되고 aa는 그 객체를 참조
+# bb = aa 는 새로운 리스트를 만드는 것이 아닌 aa가 참조하는 객체를
+# bb도 참조하기에 이런 결과가 나온 것
+# 같은 리스트를 참조하는 다른 이름인 것
+```
+
+    130813302954304
+    130813302954304
+    130813302954304
+    130813302954304
+
+
+
+```python
+aa = [11, 22, 33]
+# bb = aa.copy()
+# bb = list(aa)
+bb = aa[:]
+print(id(aa))
+print(id(bb))
+```
+
+    130813297295808
+    130813297317440
+
+
+
+```python
+# 배열 초기화
+cc = []
+print(cc, type(cc))
+dd = list()
+print(dd, type(dd))
+```
+
+    [] <class 'list'>
+    [] <class 'list'>
+
+
+
+```python
+# 2중 배열
+li = [1, 2, 3, 4, [11, 22, 33]]
+print(li)
+print(li[4])
+print(li[-1]) # 맨 뒷 부분
+print(li[4][2])
+```
+
+    [1, 2, 3, 4, [11, 22, 33]]
+    [11, 22, 33]
+    [11, 22, 33]
+    33
+
+
+
+```python
+# 삼중 리스트
+a = [1, 2, 3, ['a', 'b', 'c', ['ok', 'Life', 'is']]]
+print(a[3][3][1])
+```
+
+    Life
+
+
+
+```python
+# 리스트의 슬라이싱
+a = [11, 22, 33, 44, 55]
+print(a[:2])
+print(a[1:3])
+print(a[2:])
+```
+
+    [11, 22]
+    [22, 33]
+    [33, 44, 55]
+
+
+
+```python
+# 중첩된 리스트에서 슬라이싱 하기
+a = [1, 2, ['0', '1', 'a', 'b', 'c'], 4, 5]
+print(a[2][2:])
+```
+
+    ['a', 'b', 'c']
+
+
+
+```python
+# 리스트 더하기
+a = [1, 2, 3]
+b = [4, 5, 6]
+print(a + b)
+```
+
+    [1, 2, 3, 4, 5, 6]
+
+
+
+```python
+# 리스트 반복
+c = a * 4
+print(c, len(c))
+```
+
+    [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3] 12
+
+
+
+```python
+# 리스트의 수정과 삭제
+a = [11, 22, 33]
+b = a.copy() # 옅은 복사를 실행하여 원본을 복사
+b[2] = 777
+print(a)
+print(b)
+```
+
+    [11, 22, 33]
+    [11, 22, 777]
+
+
+
+```python
+# 요소 삭제 *
+aa = [11, 22, 33, 44, 55]
+del aa[2]
+print(aa)
+```
+
+    [11, 22, 44, 55]
+
+
+
+```python
+# 요소 삭제2(슬라이싱)
+aa = [11, 22, 33, 44, 55]
+del aa[1:3]
+print(aa)
+```
+
+    [11, 44, 55]
+
+
+### 리스트 관련 함수
+
+
+```python
+# append - 추가하기 *
+a = []
+a.append(1)
+print(a)
+a.append(2)
+print(a)
+a.append([11, 22, 33])
+print(a)
+a.append(4)
+print(a)
+```
+
+    [1]
+    [1, 2]
+    [1, 2, [11, 22, 33]]
+    [1, 2, [11, 22, 33], 4]
+
+
+
+```python
+# sort - 리스트 정렬
+a = [5 ,24 ,75, 2, 43, 36 ,93]
+b = ['gf', 'f', 'u', 'a', 'e', 'f', 'z', 'c']
+a.sort()
+b.sort()
+print(a)
+print(b)
+```
+
+    [2, 5, 24, 36, 43, 75, 93]
+    ['a', 'c', 'e', 'f', 'f', 'gf', 'u', 'z']
+
+
+
+```python
+# reverse - 리스트 뒤집기
+a = [5 ,24 ,75, 2, 43, 36 ,93]
+b = ['gf', 'f', 'u', 'a', 'e', 'f', 'z', 'c']
+# 원본 훼손 X
+print(a[::-1])
+print(b[::-1])
+# 원본 훼손
+a.reverse()
+b.reverse()
+print(a)
+print(b)
+```
+
+    [93, 36, 43, 2, 75, 24, 5]
+    ['c', 'z', 'f', 'e', 'a', 'u', 'f', 'gf']
+    [93, 36, 43, 2, 75, 24, 5]
+    ['c', 'z', 'f', 'e', 'a', 'u', 'f', 'gf']
+
+
+
+```python
+# sort와 reverse 응용
+a = [5 ,24 ,75, 2, 43, 36 ,93]
+a.sort()
+a.reverse() # a[::-1]
+print(a)
+
+b = [5 ,24 ,75, 2, 43, 36 ,93]
+b.sort(reverse=True) # True는 내림차순, False는 오름차순이 기본값
+print(b)
+
+# sort, reverse는 반환값 없음(결과: None)
+print(a.sort())
+print(a.reverse())
+```
+
+    [93, 75, 43, 36, 24, 5, 2]
+    [93, 75, 43, 36, 24, 5, 2]
+    None
+    None
+
+
+
+```python
+# sorted - 원본 유지하기
+aa = [66, 7, 8, 99, 0]
+print(sorted(aa))
+print(sorted(aa, reverse=True))
+print(aa)
+```
+
+    [0, 7, 8, 66, 99]
+    [99, 66, 8, 7, 0]
+    [66, 7, 8, 99, 0]
+
+
+
+```python
+# sorted 응용하기
+fruit = ["apple", "banana", "orange", "kiwi", "strawberry"]
+print(sorted(fruit, key=len)) # 문자열의 길이 기준으로 정렬
+print(sorted(fruit, key=len, reverse="True"))
+```
+
+    ['kiwi', 'apple', 'banana', 'orange', 'strawberry']
+    ['strawberry', 'banana', 'orange', 'apple', 'kiwi']
+
+
+
+```python
+# index - 인덱스반환
+a = [1, 2, 3, 4]
+print(a.index(3))
+# print(a.index(11))
+```
+
+    2
+
+
+**없으면 오류**
+![image.png](2290bdf5-ea53-4b8f-ae39-7f9672fa377e.png)
+
+
+```python
+# index 응용
+fruit = ["apple", "banana", "orange", "kiwi", "strawberry"]
+inp = input("좋아하는 과일")
+# melon 을 선택 -> melon 인덱스 추출
+n = fruit.index(inp)
+print(f"{inp}을 좋아하시는 군요. {n + 1} 번째에 있습니다")
+```
+
+    좋아하는 과일 apple
+
+
+    apple을 좋아하시는 군요. 1 번째에 있습니다
+
+
+
+```python
+# insert - 리스트에 요소 삽입 *
+a = [1, 2, 3 ,4 ,5 ,6]
+a.insert(0, 77) # 원래 그 자리에 있던 요소는 뒤로 밀고 삽입
+print(a)
+a.insert(3, 177)
+print(a)
+a.insert(5, [1, 2, 3])
+print(a)
+a.insert(len(a), 11177) # 배열 맨 뒤에 추가하려면 len() 함수가 편함
+print(a)
+```
+
+    [77, 1, 2, 3, 4, 5, 6]
+    [77, 1, 2, 177, 3, 4, 5, 6]
+    [77, 1, 2, 177, 3, [1, 2, 3], 4, 5, 6]
+    [77, 1, 2, 177, 3, [1, 2, 3], 4, 5, 6, 11177]
+
+
+
+```python
+# remove 리스트 요소 제거
+a = [1, 2, 3] * 3 
+a.remove(2) # 인덱스 가장 앞에 있는 그 값을 삭제
+print(a)
+```
+
+    [1, 3, 1, 2, 3, 1, 2, 3]
+
+
+
+```python
+# pop 리스트 요소 꺼내기 **
+a = [1, 2, 3, 4, 5]
+out = a.pop(0) # 값을 넣으면 인덱스의 요소를 반환하고 그 요소는 삭제
+print(out, a) # 값이 없을 때(기본값)는 맨 뒤에서 부터 꺼내면서 삭제
+out = a.pop(0)
+print(out, a)
+out = a.pop(0)
+print(out, a)
+out = a.pop(0)
+print(out, a)
+out = a.pop(0)
+print(out, a)
+```
+
+    1 [2, 3, 4, 5]
+    2 [3, 4, 5]
+    3 [4, 5]
+    4 [5]
+    5 []
+
+
+
+```python
+# count 리스트에 포함된 요소 개수 세기
+a = [2, 3, 4, 6]*2 + [1, 2, 3]*3
+print(a, a.count(4))
+```
+
+    [2, 3, 4, 6, 2, 3, 4, 6, 1, 2, 3, 1, 2, 3, 1, 2, 3] 2
+
+
+
+```python
+# extend 리스트 확장
+a = [1, 2, 3]
+a.extend([4, 5])
+print(a)
+```
+
+    [1, 2, 3, 4, 5]
+
+
+### 응용 문제
+
+
+```python
+# 장바구니
+bag = [] # bag = list()
+```
+
+
+```python
+# append를 이용한 자료 넣기
+item = input("필요한 항목을 넣어주세요")
+bag.append(item)
+print("장바구니에는 {0} 들이 들어 있습니다.".format(bag))
+```
+
+    필요한 항목을 넣어주세요 감자
+
+
+    장바구니에는 ['사과', '사과', '바나나', '감자'] 들이 들어 있습니다.
+
+
+
+```python
+# FIFO
+hand = bag.pop(0)
+print("%s를 꺼내서 장바구니에 %s가 남았습니다." % (hand, bag))
+```
+
+    사과를 꺼내서 장바구니에 ['사과', '바나나']가 남았습니다.
+
+
+- 선택 출력
+> "바구니에 ['호박', '감자', '소주', '맥주', '치킨', '피자'] 이 있습니다."
+> "꺼내고 싶은 물품을 입력하세요"
+> "바구니에서 ??? 을 꺼내어 [~, ~, ~, ~] 가 남았습니다."
+
+
+
+```python
+baguni = ['호박', '감자', '소주', '맥주', '치킨', '피자']
+print("바구니에 {0}이 있습니다".format(baguni))
+item = input("꺼내고 싶은 물품을 입력하세요")
+baguni.pop(baguni.index(item))
+print("바구니에서 %s 을 꺼내어 %s 가 남았습니다." % (item, baguni))
+```
+
+    바구니에 ['호박', '감자', '소주', '맥주', '치킨', '피자']이 있습니다
+
+
+    꺼내고 싶은 물품을 입력하세요 호박
+
+
+    바구니에서 호박 을 꺼내어 ['감자', '소주', '맥주', '치킨', '피자'] 가 남았습니다.
