@@ -5,4 +5,4 @@ r1 = r.get(btc).json()
 r2 = r.get(usd).json()
 num = r2[-1]['deal_bas_r']
 r3 = float(r1['price']) * float(num.replace(',', ''))
-print(r3, type(r3))
+print(f"{int(r3):,}", "원")
