@@ -419,6 +419,54 @@ for j in range(len(u)):
 
 
 
+```python
+import requests as req
+
+url = "https://finance.naver.com/sise/sise_market_sum.naver"
+ori = req.get(url).text
+
+start_title = ori.find('<a href="/item/main.naver?code=005930" class="tltle">삼성전자</a>')
+ori1 = ori[start_title : start_title + 72].replace('<a href="/item/main.naver?code=005930" class="tltle">', '').replace('</a></td>', '').replace('\n', '').strip()
+ori2 = ori[start_title + 72 : start_title + 105].replace('<td class="number">', '').replace('</td>', '').strip()
+
+start_title2 = ori.find('<a href="/item/main.naver?code=035420" class="tltle">')
+ori11 = ori[start_title2 : start_title2 + 72].replace('<a href="/item/main.naver?code=035420" class="tltle">', '').replace('</a></td>', '').replace('\n', '').strip()
+ori22 = ori[start_title2 + 72 : start_title2 + 105].replace('<td class="number">', '').replace('</td>', '').strip()
+
+print("종목:", ori1)
+print("가격:", ori2, "원")
+print("종목:", ori11)
+print("가격:", ori22, "원")
+```
+
+    종목: 삼성전자
+    가격: 167,800 원
+    종목: NAVER
+    가격: 257,500 원
+
+
+
+```python
+import requests as req
+
+url = "https://finance.naver.com/sise/sise_market_sum.naver"
+ori = req.get(url).text
+
+def ficance(code = '005930'):
+    start_title = ori.find(f'<a href="/item/main.naver?code={code}" class="tltle">삼성전자</a>')
+    ori1 = ori[start_title : start_title + 72].replace(f'<a href="/item/main.naver?code={code}" class="tltle">', '').replace('</a></td>', '').replace('\n', '').strip()
+    ori2 = ori[start_title + 72 : start_title + 105].replace('<td class="number">', '').replace('</td>', '').strip()
+    print("종목:", ori1)
+    print("가격:", ori2, "원")
+
+ficance()
+```
+
+    종목: 삼성전자
+    가격: 167,800 원
+
+
+
 **py03_제어문 특강**
 
 
